@@ -1,0 +1,45 @@
+1 : import java.io.FileReader;
+2 : import java.io.FileWriter;
+3 : import java.io.IOException;
+4 : import java.io.LineNumberReader;
+5 : import java.io.PrintWriter;
+6 : public class AttachLineNumberWrite
+7 : {
+8 :    public static void main(String args[]){
+9 :       String buf;
+10 :       FileReader fin=null;
+11 :       FileWriter fout=null;
+12 :       if(args.length != 2){ // 인수로 소스파일명 및 대상파일명을 입력해야 한다.
+13 :          System.out.println("소스파일 및 대상파일을 지정하십시오.");
+14 :          System.exit(1);
+15 :       }
+16 :       try{
+17 :          fin = new FileReader(args[0]); // 소스 파일과 연결된 입력 파일 스트림
+18 :          fout = new FileWriter(args[1]); // 대상 파일과 연결된 입력 파일 스트림
+19 :       }catch(Exception e){
+20 :          System.out.println(e);
+21 :          System.exit(1);
+22 :       }
+23 :       LineNumberReader read = new LineNumberReader(fin);
+24 :       PrintWriter write = new PrintWriter(fout); // 기본 fout 출력스트림에 연결
+25 :       int num=1;
+26 :       while(true){
+27 :          try{
+28 :             buf=read.readLine(); // 한 줄의 데이터를 읽는다.
+29 :             if(buf==null) break;
+30 :          }catch(IOException e){
+31 :             System.out.println(e);
+32 :             break;
+33 :          }
+34 :          buf = num + " : " + buf; // [번호 : 프로그램 내용] 형식으로 수정
+35 :          write.println(buf); // 수정된 내용을 파일에 출력한다.
+36 :          num++;
+37 :       }
+38 :       try{
+39 :          fin.close();
+40 :          fout.close();
+41 :       }catch(IOException e){
+42 :          System.out.println(e);
+43 :       }
+44 :    }
+45 : }

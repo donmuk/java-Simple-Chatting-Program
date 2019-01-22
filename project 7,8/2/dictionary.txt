@@ -1,0 +1,14 @@
+dictionary
+사전
+apple
+사과
+home
+집
+hello
+안녕
+good
+좋은
+nice
+즐거운
+tree
+나무
